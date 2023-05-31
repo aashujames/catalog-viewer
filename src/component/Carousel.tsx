@@ -63,24 +63,39 @@ const Carousel = ({ imageData }: Props) => {
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying);
     };
-    console.log(selectedIndex);
-    console.log(isPlaying);
 
     return (
         <div className="main-container">
             <div className="top-container">
-                <img src={isSelected?.urls.regular} className="top-image" />
+                <div className="top-image-section">
+                    <img src={isSelected?.urls.regular} className="top-image" />
+                </div>
+                <div className="description-section">
+                    <h3>Image{selectedIndex + 1} Details</h3>
+                    <p className="para">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Id corporis adipisci tempore aperiam optio mollitia
+                        atque vel nihil animi facilis eaque, voluptatem error
+                        reiciendis ipsam accusamus, eius ut voluptatum illo
+                        iusto vitae nam et labore! In fugiat minima, et, sed at
+                        quaerat non fuga cumque laborum dolorem autem totam
+                        quis?
+                    </p>
+                </div>
             </div>
             <div className="bottom-container">
-                <div className="arrow-back" onClick={handleLeftImageChange}>
-                    <ArrowBackIosIcon />
+                <div
+                    onClick={handleLeftImageChange}
+                    className="arrow-back-section"
+                >
+                    <ArrowBackIosIcon className="arrow-back" />
                 </div>
                 {imageData.map((image, index) => (
                     <div onClick={() => handleClick(index)} key={image.id}>
                         <img
                             src={image.urls.regular}
                             alt={`Image ${image.id}`}
-                            className="image"
+                            className="selected-image"
                         />
                     </div>
                 ))}
