@@ -24,6 +24,26 @@ const Carousel = ({ imageData }: Props) => {
         setIsSelected(imageData[0]);
     }, [imageData]);
 
+    useEffect(() => {
+        let intervalId: number | undefined;
+
+        if (isPlaying) {
+            intervalId = window.setInterval(() => {
+                let updatedIndex = selectedIndex + 1;
+                if (updatedIndex >= imageData.length) {
+                    updatedIndex = 0;
+                }
+                handleClick(updatedIndex);
+            }, 3000);
+        }
+
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
+    }, [isPlaying, selectedIndex, imageData]);
+
     const handleLeftImageChange = () => {
         let updatedIndex = selectedIndex - 1;
         if (updatedIndex < 0) {
@@ -40,7 +60,11 @@ const Carousel = ({ imageData }: Props) => {
         handleClick(updatedIndex);
     };
 
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
     console.log(selectedIndex);
+    console.log(isPlaying);
 
     return (
         <div className="main-container">
@@ -64,7 +88,9 @@ const Carousel = ({ imageData }: Props) => {
                     <ArrowForwardIosIcon />
                 </div>
                 <div>
-                    <button></button>
+                    <button onClick={handlePlayPause}>
+                        {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
+                    </button>
                 </div>
             </div>
         </div>
