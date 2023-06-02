@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    row-gap: 20px;
 }
 .top-container {
     width: 90%;
@@ -11,6 +12,14 @@
     display: flex;
     justify-content: space-between;
     column-gap: 43px;
+}
+
+@media screen and (max-width: 450px) {
+    .top-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .top-image-section {
@@ -23,6 +32,18 @@
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 6%;
+}
+
+@media screen and (max-width: 450px) {
+    .top-image-section {
+        width: 80%;
+        height: 73%;
+    }
+    .top-image {
+        height: 360px;
+        object-fit: cover;
+        border-radius: 3%;
+    }
 }
 
 .description-section {
@@ -38,30 +59,56 @@
     word-wrap: break-word;
 }
 
-.bottom-container {
-    display: grid;
-    grid-template-columns: 5% repeat(5, 1fr) 5% 6%;
-    column-gap: 15px;
-    height: 50px;
-    width: 90%;
-    justify-content: center;
-    align-items: center;
+@media screen and (max-width: 450px) {
+    .description-section {
+        width: 70%;
+    }
+    .para {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow-y: auto;
+        font-size: 12px;
+    }
+    h3 {
+        font-size: 16px;
+    }
 }
 
-.arrow-back-section {
-    width: 20px;
-    height: 20px;
+.bottom-container {
+    display: grid;
+    grid-template-columns: 5% 80% 5% 6%;
+    column-gap: 15px;
+    height: 100%;
+    width: 90%;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(196, 245, 245);
+}
+
+.images-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
 }
 
 .arrow-back {
     cursor: pointer;
-    width: 100%;
-    height: 100%;
+}
+
+.arrow-back:hover {
+    transform: scale(1.5, 1.5);
+}
+
+.image-top {
+    height: 65%;
+    width: 80%;
 }
 
 .image {
-    width: 80%;
-    height: 85%;
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -76,4 +123,36 @@
 
 .arrow-right {
     cursor: pointer;
+}
+
+.arrow-right:hover {
+    transform: scale(1.5, 1.5);
+}
+
+@media screen and (max-width: 450px) {
+    .bottom-container {
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+
+    .images-section {
+        height: 65%;
+    }
+
+    .arrow-back {
+        position: absolute;
+        top: 50%;
+    }
+    .arrow-right {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+    }
+    .play-pause-btn {
+        position: absolute;
+        top: 84%;
+        left: 42%;
+        cursor: pointer;
+    }
 }

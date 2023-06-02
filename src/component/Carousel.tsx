@@ -90,20 +90,29 @@ const Carousel = ({ imageData }: Props) => {
                 >
                     <ArrowBackIosIcon className="arrow-back" />
                 </div>
-                {imageData.map((image, index) => (
-                    <div onClick={() => handleClick(index)} key={image.id}>
-                        <img
-                            src={image.urls.regular}
-                            alt={`Image ${image.id}`}
-                            className="selected-image"
-                        />
-                    </div>
-                ))}
+                <div className="images-section">
+                    {imageData.map((image, index) => (
+                        <div
+                            onClick={() => handleClick(index)}
+                            key={image.id}
+                            className="image-top"
+                        >
+                            <img
+                                src={image.urls.regular}
+                                alt={`Image ${image.id}`}
+                                className="image"
+                            />
+                        </div>
+                    ))}
+                </div>
                 <div className="arrow-right" onClick={handleRightImageChange}>
                     <ArrowForwardIosIcon />
                 </div>
                 <div>
-                    <button onClick={handlePlayPause}>
+                    <button
+                        onClick={handlePlayPause}
+                        className="play-pause-btn"
+                    >
                         {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
                     </button>
                 </div>
